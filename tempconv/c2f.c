@@ -3,7 +3,7 @@
 #include <assert.h>
 
 int	c2f(int cel) {
-	return cel+32;
+	return cel*1.8+32;
 }
 
 int	main(int argc, char **argv) {
