@@ -6,6 +6,7 @@ int	f2c(int fah) {
 	return (fah-32)/1.8;
 }
 
+#ifdef	MAIN
 int	main(int argc, char **argv) {
 	int	cel, fah;
 
@@ -17,3 +18,4 @@ int	main(int argc, char **argv) {
 
 	return 0;
 }
+#endif

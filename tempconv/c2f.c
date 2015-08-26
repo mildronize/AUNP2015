@@ -6,6 +6,7 @@ int	c2f(int cel) {
 	return cel*1.8+32;
 }
 
+#ifdef	MAIN
 int	main(int argc, char **argv) {
 	int	cel, fah;
 
@@ -17,3 +18,4 @@ int	main(int argc, char **argv) {
 
 	return 0;
 }
+#endif
