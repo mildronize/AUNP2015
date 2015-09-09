@@ -25,13 +25,13 @@ char	*rtrim(char *s) {
 	return s;
 }
 
-char	remove_end_h2_tag_at_end_string(char *s) {
+char	*remove_end_h2_tag_at_end_string(char *s) {
 	char	tag[]="</h2>";
 	int	l = strlen(s);
 	int	taglen = strlen(tag);
 
-	if (strcmp((s+l-1-taglen), tag) == 0) {
-		*(s+l-1-taglen) = '\0';
+	if (strcmp((s+l-taglen), tag) == 0) {
+		*(s+l-taglen) = '\0';
 	}
 	return s;
 }
@@ -51,6 +51,14 @@ int	main(int argc, char **argv) {
 	ptr = ltrim(buf);
 	assert ( strcmp(ptr, "ABCDEF")==0 );
 
+	strcpy(buf, " \t\n\t");
+	ptr = ltrim(buf);
+	assert ( strcmp(ptr, "")==0 );
+
+	strcpy(buf, "");
+	ptr = ltrim(buf);
+	assert ( strcmp(ptr, "")==0 );
+
 	c = lastchar("ABCDEF");
 	assert( c == 'F' );
 
@@ -60,7 +68,6 @@ int	main(int argc, char **argv) {
 
 	strcpy(buf, "ABCDEF</h2>");
 	ptr = remove_end_h2_tag_at_end_string(buf);
-	printf("ptr = '%s'\n", ptr);
 	assert ( strcmp(ptr, "ABCDEF")==0 );
 	
 	return 0;
