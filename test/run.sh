@@ -1,0 +1,1 @@
+/usr/lib/gcc/x86_64-linux-gnu/4.8/cc1 -quiet -v -imultiarch x86_64-linux-gnu test.c -quiet -dumpbase test.c -mtune=generic -march=x86-64 -auxbase test -version -fstack-protector -Wformat -Wformat-security -o test.s
