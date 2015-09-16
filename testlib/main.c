@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "func.h"
+#include "f.h"
 
 int	main(void) {
 	func1(1);
