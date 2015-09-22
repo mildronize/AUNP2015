@@ -12,7 +12,10 @@ int	main(void) {
 	void	(*my_pdot)(int);
 	
 	void	*handle;
+/*
 	handle = dlopen("/home/chatchai.j/2014/2014-09-16/libtest/libp.so", RTLD_LAZY);
+*/
+	handle = dlopen("/home/a2015/AUNP2015/libtest/libp.so", RTLD_LAZY);
 	if(!handle) {
 		printf("error = %s\n", dlerror());
 		exit(-1);
