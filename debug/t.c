@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 struct	info {
-	char	*name;
+	char	name[80];
 	int	age;
 	float	height;
 	float	weight;
@@ -14,7 +14,7 @@ char	filename[]="input.txt";
 
 int	main(int argc, char **argv) {
 	char	name[80];
-	int	i, count;
+	int	i, count=0;
 	int	age;
 	float	height, weight;
 
