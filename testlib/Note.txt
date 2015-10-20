@@ -1,0 +1,2 @@
+See this
+http://eli.thegreenplace.net/2011/08/25/load-time-relocation-of-shared-libraries/
