@@ -1,0 +1,3 @@
+Create daemon program that check how long koding vm will be stay up
+after all user account are logging out.
+- using system("date;who"
