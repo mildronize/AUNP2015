@@ -1,0 +1,24 @@
+#!/bin/bash
+
+[ -z "$1" ] && echo "Usage: $0 pid" && exit
+export P=$1
+
+loop_kill() {
+	N=$1
+	SIG=$2
+	for i in `seq 1 $N`; do
+		kill -${SIG} $P
+	done
+}
+
+loop_kill 
+
+
+for i in 1 2; do 
+	kill -USR1 $P
+done
+
+for i in 1 2; do 
+	kill -USR2 $P
+done
+ kill -INT $P; kill -INT $P
