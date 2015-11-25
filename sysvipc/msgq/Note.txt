@@ -1,0 +1,7 @@
+Blocking problem on named-pipe.
+
+read() on empty blocking FIFO (not open with O_NONBLOCK) will wait until
+some data can be read.
+read() on non-blocking FIFO with no data will return 0 bytes.
+
+	

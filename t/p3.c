@@ -4,7 +4,7 @@
 
 int	main(void) {
 	char	cmd[]="ls";
-	int	ret;
+//	int	ret;
 	FILE	*fp;
 	char	line[128];
 
