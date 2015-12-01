@@ -30,7 +30,6 @@ char	*perm2str(struct ipc_perm p) {
 	return str;
 }
 
-
 void	semStatus(int semid) {
 	int	ret;
 	struct	semid_ds ds;
@@ -45,6 +44,30 @@ void	semStatus(int semid) {
 		(int)ds.sem_nsems,
 		perm2str(ds.sem_perm)
 	);
+}
+
+int	semGetSemPid(int semid, int n) {
+	int	ret = semctl(semid, n, GETPID);
+	if (ret == -1) { perror("semctl"); exit(-1); }
+	return ret;
+}
+
+int	semGetNCount(int semid, int n) {
+	int	ret = semctl(semid, n, GETNCNT);
+	if (ret == -1) { perror("semctl"); exit(-1); }
+	return ret;
+}
+
+int	semGetZCount(int semid, int n) {
+	int	ret = semctl(semid, n, GETZCNT);
+	if (ret == -1) { perror("semctl"); exit(-1); }
+	return ret;
+}
+
+int	semGetVal(int semid, int n) {
+	int	ret = semctl(semid, n, GETVAL);
+	if (ret == -1) { perror("semctl"); exit(-1); }
+	return ret;
 }
 
 void	child(int semid) {
