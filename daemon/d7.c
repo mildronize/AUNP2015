@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
+#include <signal.h>
 #include <sys/time.h>
+#include <sys/types.h>
 
-#define	HOME		"/home/a2015"
+#define	HOME		"/home/mildronize"
 #define	BUFSZ	128
 
 #define	PENDINGLOG	HOME "/tmp/pending-log.txt"
@@ -20,7 +21,7 @@ int	SigUSR2 = 0;
 
 void	sighandler(int sig) {
 	char	buf[BUFSZ];
-
+    struct timeval t;
 	sprintf(buf, "Sig %d -- %d.%d\n", sig, (int)t.tv_sec,(int)t.tv_usec);
 	if (sig == SIGUSR1) {
 		if (SigUSR1 == 0)
@@ -47,7 +48,7 @@ int	count_user(void) {
 
 	system(COUNTCMD);
 
-	f = fopen(FILENAME, "r");
+	f = fopen(COUNTTEMP, "r");
 	if (f == (FILE *)NULL) { perror("fopen"); exit(-1); }
 	fscanf(f, "%d", &count);
 	fclose(f);
@@ -61,7 +62,7 @@ char	*datestr(void) {
 
 	system(DATECMD);
 
-	f = fopen(FILENAME2, "r");
+	f = fopen(DATETEMP, "r");
 	if (f == (FILE *)NULL) { perror("fopen"); exit(-1); }
 	fgets(str, sizeof(str), f);
 	str[strlen(str)-1] = '\0';
@@ -114,7 +115,7 @@ int	logdaemon(void) {
 		count = count_user();
 		date = datestr();
 		sprintf(buf, "%s %d", date, count);
-		save2file(FILENAME3, buf);
+		save2file(OUTFILE, buf);
 	
 		sum += count;
 		if (count > maximum) { maximum = count; }
