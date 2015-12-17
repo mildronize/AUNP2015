@@ -28,8 +28,8 @@ void	sighandler(int sig) {
 			SigUSR1 = 1;
 		else save2file(PENDINGLOG, buf);
 	} else if(sig == SIGUSR2) {
-		if (SigUSR1 == 0)
-			SigUSR1 = 1;
+		if (SigUSR2 == 0)
+			SigUSR2 = 1;
 		else save2file(PENDINGLOG, buf);
 	}
 }
@@ -93,12 +93,18 @@ void	log_average(struct timeval start, unsigned long sum) {
 	sprintf(buf, "%d : %lf", (int)now.tv_sec, avg);
 
 	save2file(AVGFILE, buf);
-}	
+}
 
 void	log_maximum(struct timeval start, unsigned int max) {
 	struct timeval now;
+	char	buf[BUFSZ];
+	unsigned	sec;
+	double	avg;
 
 	gettimeofday(&now, NULL);
+	sprintf(buf, "%d : T(%d), %d", (int)now.tv_sec, (int)start.tv_sec, max);
+    printf("print max\n");
+	save2file(MAXFILE, buf);
 }
 
 int	logdaemon(void) {
@@ -110,13 +116,13 @@ int	logdaemon(void) {
 	struct	timeval	t1,t2;
 
 	gettimeofday(&t1, NULL);
-	
+
 	while(1) {
 		count = count_user();
 		date = datestr();
 		sprintf(buf, "%s %d", date, count);
 		save2file(OUTFILE, buf);
-	
+
 		sum += count;
 		if (count > maximum) { maximum = count; }
 
